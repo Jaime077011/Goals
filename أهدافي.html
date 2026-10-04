@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>أهدافي</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet"><meta name="theme-color" content="#0F5465"><style id="css">
+*{box-sizing:border-box}
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF4F3;--surface:#FFFFFF;--ink:#13262E;--muted:#5B7078;
+  --sea:#0F5465;--on-sea:#FFFFFF;--glass:#3F8F86;--sun:#E3A82E;--line:#D3E0DE;--red:#B9473A;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1A1F;--surface:#13252C;--ink:#E4EFED;--muted:#8FA6AC;
+    --sea:#86CBCB;--on-sea:#0C1A1F;--glass:#5FB3A8;--sun:#F2C14E;--line:#22383F;--red:#E58A7C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1A1F;--surface:#13252C;--ink:#E4EFED;--muted:#8FA6AC;
+  --sea:#86CBCB;--on-sea:#0C1A1F;--glass:#5FB3A8;--sun:#F2C14E;--line:#22383F;--red:#E58A7C;
+  color-scheme:dark;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"Alexandria","Segoe UI",Tahoma,Arial,sans-serif;font-size:16px;line-height:1.7}
+main{max-width:640px;margin:0 auto;padding:20px 16px 56px}
+.top{padding:12px 4px 8px}
+h1{font-size:2.6rem;font-weight:800;margin:0;line-height:1.15;color:var(--sea)}
+.sub{color:var(--muted);margin:6px 0 20px;font-size:.95rem}
+.tide{position:relative;height:14px;border-radius:999px;background:var(--line);overflow:hidden}
+.tide i{position:absolute;top:0;bottom:0;inset-inline-start:0;background:var(--glass);border-radius:999px;transition:width .5s ease}
+.tide-text{display:flex;justify-content:space-between;margin-top:8px;font-size:.9rem;color:var(--muted)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+button{font:inherit;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:.88rem}
+.chip[aria-pressed="true"]{background:var(--sea);color:var(--on-sea);border-color:var(--sea)}
+.status{margin-inline-start:auto;font-size:.82rem;color:var(--muted)}
+.area{margin-top:30px}
+.area h2{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:600;margin:0 0 6px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.area.complete h2{border-color:var(--sun)}
+.area h2 .count{margin-inline-start:auto;font-size:.85rem;color:var(--muted);font-weight:400;white-space:nowrap}
+.area h2 input{flex:1;min-width:0}
+ul{list-style:none;margin:0;padding:0}
+.item{display:flex;align-items:flex-start;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.item label{display:flex;gap:12px;align-items:flex-start;flex:1;cursor:pointer;min-height:32px}
+.item input[type=checkbox]{appearance:none;-webkit-appearance:none;width:24px;height:24px;flex:none;margin:3px 0 0;border:2px solid var(--glass);border-radius:50%;display:grid;place-content:center;background:transparent;cursor:pointer;transition:background .15s}
+.item input[type=checkbox]::after{content:"";width:6px;height:11px;border:solid var(--on-sea);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);margin-top:-3px;transition:transform .15s}
+.item input[type=checkbox]:checked{background:var(--glass)}
+.item input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
+.item input[type=checkbox]:disabled{cursor:default;opacity:.7}
+.done .txt{text-decoration:line-through;color:var(--muted)}
+.field{font:inherit;font-size:16px;padding:9px 13px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);min-width:0}
+.item .field{flex:1}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.add{display:flex;gap:8px;margin-top:12px}
+.add .field{flex:1}
+.go{border:0;border-radius:12px;padding:0 18px;background:var(--sea);color:var(--on-sea);font-weight:600;white-space:nowrap}
+.del{border:0;background:transparent;color:var(--red);font-size:.85rem;padding:6px 8px;white-space:nowrap}
+.empty{color:var(--muted);font-size:.9rem;padding:10px 2px;margin:0}
+.newsec{margin-top:40px}
+.newsec h2{font-size:1rem;font-weight:600;color:var(--muted);margin:0 0 4px;border:0}
+.foot{margin-top:40px;color:var(--muted);font-size:.82rem;text-align:center}
+.pen{border:0;background:transparent;color:var(--muted);padding:4px 8px;font-size:1rem;line-height:1;border-radius:8px;flex:none}
+.pen:hover{color:var(--sea)}
+.editbox{display:flex;flex-direction:column;gap:8px;flex:1;padding:4px 0}
+.editbox .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.editbox .field{width:100%}
+.editbox .emoji{width:3.4em;text-align:center;flex:none}
+.ghost{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:7px 14px}
+.editbox .go{padding:8px 18px}
+.editbox .del{margin-inline-start:auto}
+.area h2 .pen{font-size:.95rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><main id="root"></main><script id="state" type="application/json">{"updated":1791100906879,"sections":[{"id":"work","emoji":"💼","title":"الشغل والفلوس","items":[{"id":"w1","t":"ألاقي طريقة ثابتة أجيب بيها عملاء مواقع بـ $500 أو أكتر","done":false},{"id":"w2","t":"أبدأ أكلم الـ 300+ lead اللي في شيتات The Archetypers","done":false},{"id":"w3","t":"أقفل أول عملاء خليجيين للـ Archetypers","done":false},{"id":"w4","t":"أبيع باقة الـ SEO والصيانة الشهرية لعملاء أكتر","done":false},{"id":"w5","t":"أكمّل شغل Servory مع فابيو","done":false}]},{"id":"life","emoji":"🏠","title":"الحياة","items":[{"id":"l1","t":"أنقل وأعيش في إسكندرية نفسها","done":false},{"id":"l2","t":"أجهّز نفسي للجواز","done":false}]},{"id":"body","emoji":"💪","title":"الصحة والجسم","items":[{"id":"b1","t":"أكمّل الـ lean bulk لحد يناير 2027","done":false},{"id":"b2","t":"أبدأ cut لمدة 6 شهور بعد كده","done":false},{"id":"b3","t":"أتمرن 4 لـ 5 مرات في الأسبوع","done":false},{"id":"b4","t":"أمشي ساعة كل يوم","done":false}]},{"id":"lang","emoji":"🗣️","title":"اللغات","items":[{"id":"g1","t":"أوصل إسباني B2 قبل آخر 2026","done":false},{"id":"g2","t":"بعدها فرنساوي، وبعدها ألماني","done":false}]},{"id":"dream","emoji":"🚀","title":"أحلام على المدى الطويل","items":[{"id":"d1","t":"أعمل حاجة بتكسب لوحدها (SaaS أو بيزنس حقيقي)","done":false},{"id":"d2","t":"أفتح مطعم أو عربية أكل (ساندوتشات بيض)","done":false},{"id":"d3","t":"أوصل لحرية مالية","done":false}]}]}</script><script id="app">
+(function(){
+  var HEAD='<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>أهدافي</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet"><meta name="theme-color" content="#0F5465">';
+  var LS='ahdafi-v1';
+  var STATUS={loading:'',saving:'بيحفظ…',saved:'محفوظ ✓',local:'محفوظ على الجهاز ده بس',readonly:'للقراية بس',error:'ماتحفظش، جرّب تاني'};
+  var root=document.getElementById('root');
+  var state;
+  try{state=JSON.parse(document.getElementById('state').textContent)}catch(e){state={updated:0,sections:[]}}
+  if(!state.sections)state.sections=[];
+  var art=null,artReady=false,dirty=false,timer=null,readOnly=false,editId=null,hideDone=false,status='loading',retried=false,refocus=null;
+  try{hideDone=localStorage.getItem(LS+':hide')==='1'}catch(e){}
+
+  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+  function ar(n){try{return Number(n).toLocaleString('ar-EG')}catch(e){return String(n)}}
+  function el(tag,props,kids){
+    var n=document.createElement(tag);
+    if(props)Object.keys(props).forEach(function(k){
+      var v=props[k];
+      if(v===undefined||v===null||v===false)return;
+      if(k.slice(0,2)==='on')n.addEventListener(k.slice(2),v);
+      else if(k==='text')n.textContent=v;
+      else if(k==='value')n.value=v;
+      else if(k==='checked')n.checked=!!v;
+      else if(k==='disabled')n.disabled=!!v;
+      else n.setAttribute(k,v===true?'':v);
+    });
+    (kids||[]).forEach(function(c){if(c==null)return;n.appendChild(typeof c==='string'?document.createTextNode(c):c)});
+    return n;
+  }
+
+  function buildDoc(){
+    var S='scr'+'ipt';
+    var css=document.getElementById('css').textContent;
+    var app=document.getElementById('app').textContent;
+    var data=JSON.stringify(state).replace(/</g,'\\u003c');
+    return '<!doctype html>\n<html lang="ar" dir="rtl"><head>'+HEAD+'<style id="css">'+css+'</style></head><body><main id="root"></main><'+S+' id="state" type="application/json">'+data+'</'+S+'><'+S+' id="app">'+app+'</'+S+'></body></html>';
+  }
+
+  function setStatus(s){status=s;var n=document.getElementById('status');if(n)n.textContent=STATUS[s]||''}
+
+  function persist(){
+    state.updated=Date.now();dirty=true;
+    try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}
+    render();schedule();
+  }
+  function schedule(){
+    if(!artReady)return;
+    if(!art){setStatus('local');return}
+    if(readOnly)return;
+    setStatus('saving');clearTimeout(timer);timer=setTimeout(flush,1500);
+  }
+  function flush(){
+    clearTimeout(timer);timer=null;
+    if(!art||readOnly||!dirty)return;
+    var snap=state.updated;
+    art.publish(buildDoc()).then(function(){
+      if(state.updated===snap)dirty=false;
+      retried=false;setStatus('saved');
+    }).catch(function(e){
+      var c=e&&e.code;
+      if(c==='conflict')return;
+      if(['not_writer','not_granted','not_declared','capability_disabled','capability_removed','consent_required'].indexOf(c)>-1){readOnly=true;setStatus('readonly');render();return}
+      if(c==='rate_limited'){setStatus('saving');timer=setTimeout(flush,8000);return}
+      if(!retried){retried=true;setStatus('saving');timer=setTimeout(flush,1500+Math.random()*1500);return}
+      setStatus('error');
+    });
+  }
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'&&timer)flush()});
+
+  function addItem(sec,input){
+    var t=input.value.trim();if(!t)return;
+    sec.items.push({id:uid(),t:t,done:false});
+    refocus='add-'+sec.id;persist();
+  }
+  function addSection(input){
+    var t=input.value.trim();if(!t)return;
+    var id=uid();
+    state.sections.push({id:id,emoji:'📌',title:t,items:[]});
+    refocus='add-'+id;persist();
+  }
+
+  function startEdit(id){editId=id;refocus='edit-'+id;render()}
+  function stopEdit(){editId=null;render()}
+
+  function editBox(id,value,onSave,onDelete,delLabel,extra){
+    var inp=el('input',{class:'field',id:'edit-'+id,value:value,'aria-label':'عدّل الكلام',enterkeyhint:'done',onkeydown:function(e){if(e.key==='Enter'){e.preventDefault();save()}else if(e.key==='Escape'){stopEdit()}}});
+    function save(){var v=inp.value.trim();if(!v)return;editId=null;onSave(v,extra&&extra.input?extra.input.value.trim():null)}
+    var row=el('div',{class:'row'},[
+      el('button',{class:'go',type:'button',onclick:save},['حفظ']),
+      el('button',{class:'ghost',type:'button',onclick:stopEdit},['إلغاء']),
+      el('button',{class:'del',type:'button',onclick:function(){if(confirm(delLabel+'؟')){editId=null;onDelete()}}},[delLabel])
+    ]);
+    var top=extra&&extra.input?el('div',{class:'row'},[extra.input,inp]):inp;
+    if(extra&&extra.input)inp.style.flex='1';
+    return el('div',{class:'editbox'},[top,row]);
+  }
+
+  function render(){
+    var total=0,done=0;
+    state.sections.forEach(function(s){s.items.forEach(function(i){total++;if(i.done)done++})});
+    var pct=total?Math.round(done/total*100):0;
+    root.textContent='';
+
+    var bar=el('div',{class:'bar'},[
+      el('button',{class:'chip',type:'button','aria-pressed':String(hideDone),onclick:function(){hideDone=!hideDone;try{localStorage.setItem(LS+':hide',hideDone?'1':'0')}catch(e){}render()}},['اخفي اللي خلص']),
+      el('span',{class:'status',id:'status',role:'status',text:STATUS[status]||''})
+    ]);
+    var tide=el('div',{class:'tide',role:'progressbar','aria-valuemin':'0','aria-valuemax':'100','aria-valuenow':String(pct),'aria-label':'نسبة اللي خلص'},[el('i',{style:'width:'+pct+'%'})]);
+    root.appendChild(el('header',{class:'top'},[
+      el('h1',{text:'أهدافي'}),
+      el('p',{class:'sub',text:readOnly?'فضّي دماغك هنا، وعلّم على اللي يخلص.':'دوس على ✏️ عشان تعدّل أي حاجة.'}),
+      tide,
+      el('div',{class:'tide-text'},[el('span',{text:'خلصت '+ar(done)+' من '+ar(total)}),el('span',{text:ar(pct)+'٪'})]),
+      bar
+    ]));
+
+    state.sections.forEach(function(sec){
+      var sd=sec.items.filter(function(i){return i.done}).length;
+      var complete=sec.items.length>0&&sd===sec.items.length;
+      var sid='sec-'+sec.id;
+      var h2;
+      if(editId===sid){
+        var emo=el('input',{class:'field emoji',value:sec.emoji||'📌','aria-label':'الإيموجي'});
+        h2=el('h2',{},[editBox(sid,sec.title,function(v,e2){sec.title=v;if(e2)sec.emoji=e2;persist()},function(){state.sections=state.sections.filter(function(s){return s!==sec});persist()},'شيل القسم',{input:emo})]);
+      }else{
+        h2=el('h2',{},[
+          el('span',{'aria-hidden':'true',text:sec.emoji||'📌'}),
+          el('span',{text:sec.title}),
+          readOnly?null:el('button',{class:'pen',type:'button','aria-label':'عدّل القسم '+sec.title,onclick:function(){startEdit(sid)}},['✏️']),
+          el('span',{class:'count',text:ar(sd)+' / '+ar(sec.items.length)})
+        ]);
+      }
+      var list=el('ul');
+      var visible=sec.items.filter(function(i){return !hideDone||!i.done||editId===i.id});
+      visible.forEach(function(item){
+        var li;
+        if(editId===item.id){
+          li=el('li',{class:'item'},[editBox(item.id,item.t,function(v){item.t=v;persist()},function(){sec.items=sec.items.filter(function(i){return i!==item});persist()},'شيل الهدف')]);
+        }else{
+          li=el('li',{class:'item'+(item.done?' done':'')},[
+            el('label',{},[
+              el('input',{type:'checkbox',checked:item.done,disabled:readOnly,onchange:function(e){item.done=e.target.checked;persist()}}),
+              el('span',{class:'txt',text:item.t})
+            ]),
+            readOnly?null:el('button',{class:'pen',type:'button','aria-label':'عدّل: '+item.t,onclick:function(){startEdit(item.id)}},['✏️'])
+          ]);
+        }
+        list.appendChild(li);
+      });
+      var section=el('section',{class:'area'+(complete?' complete':'')},[h2,list]);
+      if(!visible.length){
+        section.appendChild(el('p',{class:'empty',text:sec.items.length?'كله خلص هنا 👏':'لسه مفيش أهداف هنا.'}));
+      }
+      if(!readOnly){
+        var inp=el('input',{class:'field',id:'add-'+sec.id,placeholder:'زوّد هدف جديد…','aria-label':'هدف جديد في '+sec.title,enterkeyhint:'done',onkeydown:function(e){if(e.key==='Enter'){e.preventDefault();addItem(sec,inp)}}});
+        section.appendChild(el('div',{class:'add'},[inp,el('button',{class:'go',type:'button',onclick:function(){addItem(sec,inp)}},['زوّد'])]));
+      }
+      root.appendChild(section);
+    });
+
+    if(!readOnly){
+      var sinp=el('input',{class:'field',placeholder:'مثلاً: دين، علاقات، سفر…','aria-label':'اسم قسم جديد',enterkeyhint:'done',onkeydown:function(e){if(e.key==='Enter'){e.preventDefault();addSection(sinp)}}});
+      root.appendChild(el('section',{class:'newsec'},[
+        el('h2',{text:'قسم جديد'}),
+        el('div',{class:'add'},[sinp,el('button',{class:'go',type:'button',onclick:function(){addSection(sinp)}},['زوّد قسم'])])
+      ]));
+    }
+    root.appendChild(el('p',{class:'foot',text:readOnly?'الصفحة دي للقراية بس.':'أي حاجة تعلّم عليها أو تعدّلها بتتحفظ لوحدها.'}));
+
+    if(refocus){var f=document.getElementById(refocus);refocus=null;if(f){f.focus();if(f.select&&f.id.indexOf('edit-')===0)f.select()}}
+  }
+
+  function afterReady(){
+    var local=null;
+    try{local=JSON.parse(localStorage.getItem(LS))}catch(e){}
+    if(local&&local.sections&&local.updated>(state.updated||0)){state=local;dirty=true;render()}
+    if(!art){setStatus('local');return}
+    if(dirty)schedule();else setStatus('saved');
+  }
+
+  render();
+  if(window.claude&&typeof window.claude.use==='function'){
+    window.claude.use('artifact').then(function(a){art=a;artReady=true;afterReady()},function(){artReady=true;afterReady()});
+  }else{artReady=true;afterReady()}
+})();
+</script></body></html>
